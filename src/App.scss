@@ -1,3 +1,17 @@
 body {
-  margin: auto;
+  background-color: #282c34;
+  color: #d2d5da;
+  margin: 50px;
+  input {
+    margin: 5px;
+  }
+  button {
+    margin: 5px;
+    width: 100px;
+  }
+  span {
+    margin: 5px;
+    display: inline-block;
+    width: 155px;
+  }
 }

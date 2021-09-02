@@ -13,18 +13,30 @@ export const Todos: React.FC = () => {
     setTodoText(event.target.value)
   }
 
-  const AddTodo = (todoText: string) => {
-    if (todoText !== '') dispatch(actions.addTodo(todoText))
+  const addTodo = (todoText: string) => {
+    if (todoText !== '') {
+      dispatch(actions.addTodo(todoText))
+      setTodoText('')
+    }
   }
+
+  const deleteTodo = (todoId: number) => dispatch(actions.deleteTodo(todoId))
+
+  const toggleTodo = (todoId: number) => dispatch(actions.toggleTodo(todoId))
 
   return (
     <>
-      Todo list
+      <h2>Todo list</h2>
       <div>
         <input value={todoText} onChange={todoChange}></input>
-        <button onClick={() => AddTodo(todoText)}>Add</button>
+        <button onClick={() => addTodo(todoText)}>Add</button>
         {todos.map(todo => (
-          <Todo key={todo.id} todo={todo} />
+          <Todo
+            key={todo.id}
+            todo={todo}
+            deleteTodo={deleteTodo}
+            toggleTodo={toggleTodo}
+          />
         ))}
       </div>
     </>

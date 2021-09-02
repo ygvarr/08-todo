@@ -24,6 +24,17 @@ export const todosReducer = (state = initialState, action: AnyAction) => {
     case 'DELETE_TODO':
       return {
         ...state,
+        todos: [...state.todos].filter(todo => todo.id !== action.todoId),
+      }
+    case 'TOGGLE_TODO':
+      return {
+        ...state,
+        todos: [...state.todos].filter(todo => {
+          if (todo.id === action.todoId) {
+            todo.complited = !todo.complited
+          }
+          return true
+        }),
       }
     default:
       return state
@@ -34,5 +45,13 @@ export const actions = {
   addTodo: (newTodosText: string) => ({
     type: 'ADD_TODO',
     newTodosText,
+  }),
+  deleteTodo: (todoId: number) => ({
+    type: 'DELETE_TODO',
+    todoId,
+  }),
+  toggleTodo: (todoId: number) => ({
+    type: 'TOGGLE_TODO',
+    todoId,
   }),
 }
